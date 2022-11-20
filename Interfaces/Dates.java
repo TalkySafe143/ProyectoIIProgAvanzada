@@ -2,6 +2,6 @@ package Interfaces;
 
 public class Dates {
 
-    public void agendarCita(){}
+    public static void agendarCita(){}
 
 }

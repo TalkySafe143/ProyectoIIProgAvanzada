@@ -2,6 +2,14 @@ package Usuario;
 
 import java.io.*;
 
+/*
+*
+* FORMATO PARA EL ARCHIVO DE USUARIOS
+*
+* email;name;ID;password;admin
+*
+* admin -> ("admin o "user")
+* */
 public class Usuario {
 
     private String email;
@@ -44,21 +52,25 @@ public class Usuario {
         this.password = password;
         this.admin = admin;
 
-        FileWriter file = null;
-        BufferedWriter buffer = null;
+        boolean exist = Usuario.checkIfUserExist(email);
 
-        try {
-            file = new FileWriter(".\\users.txt", true);
-            buffer = new BufferedWriter(file);
+        if (!exist) {
+            FileWriter file = null;
+            BufferedWriter buffer = null;
 
-            buffer.write(this.email + ";" + this.name + ";" + this.ID + ";" + this.password + ";" + this.admin);
-            buffer.newLine();
+            try {
+                file = new FileWriter("./src/Usuario/users.txt", true);
+                buffer = new BufferedWriter(file);
 
-            buffer.close();
-            file.close();
-        } catch (Exception e) {
-            System.out.println(e.getStackTrace());
-            throw e;
+                buffer.write(this.email + ";" + this.name + ";" + this.ID + ";" + this.password + ";" + this.admin);
+                buffer.newLine();
+
+                buffer.close();
+                file.close();
+            } catch (Exception e) {
+                System.out.println(e.getStackTrace());
+                throw e;
+            }
         }
 
     }
@@ -77,6 +89,10 @@ public class Usuario {
 
     private String getPassword() {
         return this.password;
+    }
+
+    public String getUserType() {
+        return this.admin;
     }
 
     public void setEmail(String email) throws Exception {
@@ -144,8 +160,8 @@ public class Usuario {
         BufferedWriter bufferNew= null;
 
         try {
-            oldFile = new File(".\\users.txt");
-            newFile = new File(".\\tempUsers.txt");
+            oldFile = new File("./src/Usuario/users.txt");
+            newFile = new File("./src/Usuario/tempUsers.txt");
             bufferNew = new BufferedWriter(new FileWriter(newFile, true));
             bufferOld = new BufferedReader(new FileReader(oldFile));
 
@@ -168,7 +184,7 @@ public class Usuario {
                 throw new Exception("No se eliminar el archivo antiguo");
             }
 
-            if(!newFile.renameTo(new File(".\\users.txt"))) {
+            if(!newFile.renameTo(new File("./src/Usuario/users.txt"))) {
                 throw new Exception("No se pudo renombrar el archivo nuevo");
             }
 
@@ -176,5 +192,26 @@ public class Usuario {
             System.out.println(e.getStackTrace());
             throw e;
         }
+    }
+
+    public static boolean checkIfUserExist(String email) throws Exception {
+
+        FileReader readFile = new FileReader("./src/Usuario/users.txt");
+        BufferedReader readBuffer = new BufferedReader(readFile);
+
+        String line;
+
+
+        while ((line = readBuffer.readLine()) != null) {
+            String parts[] = line.split(";");
+
+            if (parts[0].equals(email)) {
+                readBuffer.close();
+                readFile.close();
+                return true;
+            }
+        }
+
+        return false;
     }
 }

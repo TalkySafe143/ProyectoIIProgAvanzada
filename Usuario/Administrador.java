@@ -33,7 +33,7 @@ public class Administrador extends Usuario {
     }
 
     public void agregarMedico(Medico nuevoMedico) throws Exception {
-        FileWriter file = new FileWriter(".\\medicos.txt", true);
+        FileWriter file = new FileWriter("./src/Usuario/medicos.txt", true);
         BufferedWriter buffer = new BufferedWriter(file);
         ArrayList<Date> citas = nuevoMedico.getDates();
         ArrayList<Especialidad> especialidades = nuevoMedico.getEspecialidades();
@@ -79,7 +79,7 @@ public class Administrador extends Usuario {
             throw new Exception("El medico que ha querido eliminar, no existe");
         }
 
-        File oldFile = new File(".\\medicos.txt");
+        File oldFile = new File("./src/Usuario/medicos.txt");
 
         if (!oldFile.delete()) {
             throw new Exception("No se pudo borrar el archivo anterior");
@@ -97,7 +97,7 @@ public class Administrador extends Usuario {
         BufferedReader buffer = null;
 
         try {
-            file = new FileReader(".\\medicos.txt");
+            file = new FileReader("./src/Usuario/medicos.txt");
             buffer = new BufferedReader(file);
 
             String line;
