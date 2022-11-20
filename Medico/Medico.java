@@ -50,4 +50,52 @@ public abstract class Medico {
 
     public abstract boolean isAvailable(String date);
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String iD) {
+        ID = iD;
+    }
+
+    public float getPricePHour() {
+        return pricePHour;
+    }
+
+    public void setPricePHour(float pricePHour) {
+        this.pricePHour = pricePHour;
+    }
+
+    public LinkedList<String> getDates() {
+        return dates;
+    }
+
+    public void setDates(LinkedList<String> dates) {
+        this.dates = dates;
+    }
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
+
+    public Especialidad getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(Especialidad specialty) {
+        this.specialty = specialty;
+    }
+
 }
