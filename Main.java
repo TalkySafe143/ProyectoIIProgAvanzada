@@ -45,10 +45,10 @@ public class Main {
                     int op = -1;
 
                     while (op == -1) {
-                        System.out.println("1. Agregar un medico\n2. Mostrar todos los medicos\n3. Cerrar sesion");
+                        System.out.println("1. Agregar un medico\n2. Mostrar todos los medicos\n3. Eliminar un medico \n4.Cerrar sesion");
                         op = scanner.nextInt();
 
-                        if (op > 3 || op < 1) {
+                        if (op > 4 || op < 1) {
                             System.out.println("Porfavor, ingrese una opcion valida");
                             op = -1;
                             continue;
@@ -59,6 +59,9 @@ public class Main {
                             op = -1;
                         } else if (op == 2) {
                             Clinica.mostrarMedicos();
+                            op = -1;
+                        }else if (op == 3) {
+                            Clinica.eliminarMedicos();
                             op = -1;
                         } else {
                             option = -1;

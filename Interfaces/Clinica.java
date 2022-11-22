@@ -3,6 +3,7 @@ package Interfaces;
 import Medico.*;
 import Usuario.Administrador;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -86,7 +87,38 @@ public class Clinica {
         }
     }
 
-    public static void eliminarMedicos() {
-        // No es necesario:)
+    public static void eliminarMedicos() throws Exception {
+        Scanner scanner = new Scanner(System.in);
+        Medico deleted = null;
+
+        System.out.println("Porfavor, ingrese el ID del medico que quiere eliminar");
+        String ID = scanner.nextLine();
+
+        ArrayList<Medico> medicosActuales = Administrador.cargarMedicos();
+
+        for (Medico x: medicosActuales) {
+            if (x.getID().equals(ID)) {
+                deleted = x;
+                break;
+            }
+        }
+
+        if (deleted == null) {
+            throw new Exception("El medico no existe");
+        }
+
+        if (!medicosActuales.remove(deleted)) {
+            throw new Exception("El medico que ha querido eliminar, no existe");
+        }
+
+        File oldFile = new File("./Usuario/medicos.txt");
+        if (!oldFile.delete()) {
+            throw new Exception("No se pudo borrar el archivo anterior");
+        }
+
+        for (Medico x : medicosActuales) {
+            Administrador.agregarMedico(x);
+        }
     }
+    
 }
