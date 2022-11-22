@@ -5,6 +5,7 @@ import Medico.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import Interfaces.*;
 
 /*
  * Andrian ruiz
@@ -42,7 +43,7 @@ public class User extends Usuario {
         while (op == -1) {
             System.out.println("Hola estos son los medicos que estan disponibles: ");
 
-            ArrayList<Medico> medicos = Administrador.cargarMedicos();
+            ArrayList<Medico> medicos = Clinica.cargarMedicos();
             ArrayList<Medico> medicsToRemove = new ArrayList<>();
 
             for (Medico x: medicos) {
@@ -50,7 +51,7 @@ public class User extends Usuario {
                 ArrayList<Especialidad> especialidades = x.getEspecialidades();
                 for (Especialidad y: especialidades) {
                     if (y.getName().equals(especialidad)) {
-                        valid = x.isAvailable(cita);
+                        valid = x.VerificarDisponibilidad(cita);
                     }
                 }
 

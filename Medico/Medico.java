@@ -66,7 +66,7 @@ public abstract class Medico {
 
     public abstract float calcularValorCita(int timeMin);
 
-    public abstract boolean isAvailable(Date date);
+    public abstract boolean VerificarDisponibilidad(Date date);
 
     public ArrayList<Especialidad> getEspecialidades() {
         return this.especialidades;

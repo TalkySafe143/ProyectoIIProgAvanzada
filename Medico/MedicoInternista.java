@@ -30,7 +30,7 @@ public class MedicoInternista extends Medico {
     }
 
     @Override
-    public boolean isAvailable(Date date) {
+    public boolean VerificarDisponibilidad(Date date) {
 
         if (date.getDay() > 5 || date.getDay() < 1) {
             return false;
