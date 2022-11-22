@@ -2,7 +2,6 @@ package Medico;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 
 // Formato de Horarios -> DIA-DIA/HORA-HORA (HORA en 24H y DIA en abreviaciones del ingles)
 

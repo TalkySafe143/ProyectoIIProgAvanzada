@@ -14,11 +14,10 @@ public class User extends Usuario {
         input = new Scanner(System.in);
     }
 
-    public void agendarCita() {
-        System.out.println("Hola " + this.getName() + " estos son los medicos que estan disponibles: ");
+    public void agendarCita(String hora, String dia, String especialidad) throws Exception {
+        System.out.println("Hola estos son los medicos que estan disponibles: ");
 
-        ArrayList<Medico> medicos = new ArrayList<Medico>();
-
+        ArrayList<Medico> medicos = new ArrayList<>();
 
 
     }

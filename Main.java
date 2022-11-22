@@ -24,7 +24,7 @@ public class Main {
             if (option > 3 || option < 1) {
                 System.out.println("Porfavor, ingrese una opcion valida");
                 new ProcessBuilder("cmd", "/c", "pause").inheritIO().start().waitFor();
-                //new ProcessBuilder("cmd", "/c", "pause").inheritIO().start().waitFor(); Limpiar la consola
+                //new ProcessBuilder("cmd", "/c", "clear").inheritIO().start().waitFor();// Limpiar la consola
                 option = -1;
                 CLS();
             }
@@ -80,7 +80,7 @@ public class Main {
                         }
 
                         if (op == 1) {
-                            Dates.agendarCita();
+                            Dates.agendarCitaFiltros();
                             op = -1;
                         } else {
                             option = -1;

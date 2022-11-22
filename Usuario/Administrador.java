@@ -32,7 +32,7 @@ public class Administrador extends Usuario {
         super(email, name, ID, password, "admin");
     }
 
-    public void agregarMedico(Medico nuevoMedico) throws Exception {
+    public static void agregarMedico(Medico nuevoMedico) throws Exception {
         FileWriter file = new FileWriter("./src/Usuario/medicos.txt", true);
         BufferedWriter buffer = new BufferedWriter(file);
         ArrayList<Date> citas = nuevoMedico.getDates();
@@ -113,7 +113,7 @@ public class Administrador extends Usuario {
             buffer.close();
             file.close();
         } catch (Exception e){
-            System.out.println(e.getStackTrace());
+            System.out.println(e.getMessage());
             throw e;
         }
 
