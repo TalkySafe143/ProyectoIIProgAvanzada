@@ -23,8 +23,10 @@ import Medico.*;
 
 import java.io.*;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class Administrador extends Usuario {
 
@@ -72,11 +74,14 @@ public class Administrador extends Usuario {
     }
 
 
-    public void eliminarMedico(Medico deleted) throws Exception {
+    public static void actualizarMedico(Medico deleted) throws Exception {
         ArrayList<Medico> medicosActuales = Administrador.cargarMedicos();
 
-        if (!medicosActuales.remove(deleted)) {
-            throw new Exception("El medico que ha querido eliminar, no existe");
+        for (Medico x: medicosActuales) {
+            if (x.getID().equals(deleted.getID())) {
+                medicosActuales.remove(x);
+                break;
+            }
         }
 
         File oldFile = new File("./Usuario/medicos.txt");
@@ -86,8 +91,9 @@ public class Administrador extends Usuario {
         }
 
         for (Medico x : medicosActuales) {
-            this.agregarMedico(x);
+            Administrador.agregarMedico(x);
         }
+        Administrador.agregarMedico(deleted);
     }
 
     public static ArrayList<Medico> cargarMedicos() throws Exception {
@@ -114,7 +120,6 @@ public class Administrador extends Usuario {
             file.close();
         } catch (Exception e){
             System.out.println(e.getMessage());
-            throw e;
         }
 
         return medicos;
@@ -178,8 +183,9 @@ public class Administrador extends Usuario {
         }
 
         if (datesSize != 0) {
-            for (int i = 3; i <= datesSize+3; i++) {
-                res.addDate(DateFormat.getDateInstance().parse(data.get(i)));
+            for (int i = 3; i < datesSize+3; i++) {
+                DateFormat  dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
+                res.addDate(dateFormat.parse(data.get(i)), false);
             }
         }
 

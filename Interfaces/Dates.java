@@ -25,6 +25,8 @@ public class Dates {
             return;
         }
 
+        month--;
+
         System.out.println("Ingrese el dia de su cita (1 a 31)");
         int day = scanner.nextInt();
 
@@ -52,13 +54,13 @@ public class Dates {
         String espec;
 
         if (opt == 1) {
-            espec = "Medico Internista";
+            espec = "Medicina Interna";
         } else {
             espec = "Pediatria";
         }
 
         try {
-            User.agendarCita(new Date(year, month, day, hour, 0), espec);
+            User.agendarCita(new Date(year-1900, month, day, hour, 0), espec);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
