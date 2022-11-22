@@ -46,13 +46,11 @@ public class User extends Usuario {
             ArrayList<Medico> medicsToRemove = new ArrayList<>();
 
             for (Medico x: medicos) {
-                System.out.println(x.getName());
                 boolean valid = false;
                 ArrayList<Especialidad> especialidades = x.getEspecialidades();
                 for (Especialidad y: especialidades) {
                     if (y.getName().equals(especialidad)) {
                         valid = x.isAvailable(cita);
-                        System.out.println(valid);
                     }
                 }
 
@@ -64,6 +62,12 @@ public class User extends Usuario {
             }
 
             medicos.removeAll(medicsToRemove);
+
+            if (medicos.size() == 0) {
+                System.out.println("Lo sentimos, no hay medicos disponibles");
+                op = 1;
+                continue;
+            }
 
             System.out.println("Ingrese el ID del medico que deseea: ['salir' para salir]");
             String medicID = input.nextLine();
@@ -99,7 +103,7 @@ public class User extends Usuario {
                             for (Medico x: medicos) {
 
                                 if (x.getID().equals(medicID)) {
-                                    x.addDate(cita);
+                                    x.addDate(cita, true);
                                     break;
                                 }
                             }

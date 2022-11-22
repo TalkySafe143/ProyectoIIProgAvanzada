@@ -99,10 +99,7 @@ public class Login {
   SALIDAS estadi logged del usuario
   */
 
-    
-
     private Usuario login(String email, String password) throws Exception {
-
         Usuario logged = null;
 
         FileReader file = null;

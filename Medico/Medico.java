@@ -19,6 +19,10 @@ import java.util.Date;
   SALIDAS ninguna
   */
 
+import Usuario.Administrador;
+
+// Formato de Horarios -> DIA-DIA/HORA-HORA (HORA en 24H y DIA en abreviaciones del ingles)
+
 public abstract class Medico {
 
     private String name;
@@ -68,7 +72,7 @@ public abstract class Medico {
         return this.especialidades;
     }
 
-    public void addEspecialidad(Especialidad nueva) {
+    public void addEspecialidad(Especialidad nueva) throws Exception {
         this.especialidades.add(nueva);
     }
 
@@ -86,6 +90,7 @@ public abstract class Medico {
         }
 
         this.name = name;
+        Administrador.actualizarMedico(this);
     }
 
     public float getPricePHour() {
@@ -98,6 +103,7 @@ public abstract class Medico {
         }
 
         this.pricePHour = pricePHour;
+        Administrador.actualizarMedico(this);
     }
 
     public String getID() {
@@ -113,6 +119,7 @@ public abstract class Medico {
         }
 
         this.ID = ID;
+        Administrador.actualizarMedico(this);
     }
 
     public String getSchedule() {
@@ -128,13 +135,17 @@ public abstract class Medico {
         }
 
         this.schedule = schedule;
+        Administrador.actualizarMedico(this);
     }
 
     public ArrayList<Date> getDates() {
         return this.dates;
     }
 
-    public void addDate(Date newDate) {
+    public void addDate(Date newDate, boolean update) throws Exception {
         this.dates.add(newDate);
+        if (update) {
+            Administrador.actualizarMedico(this);
+        }
     }
 }

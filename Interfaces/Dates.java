@@ -26,20 +26,22 @@ public class Dates {
     public static void agendarCitaFiltros(){
         Scanner scanner = new Scanner(System.in);
         // Pedir los filtros para agendar citas y pasarlos como parametros a User.agendarCita()
-        System.out.println("Ingrese el año para su cita");// ingresa y verifica que el año este disponible
+        System.out.println("Ingrese el año para su cita");
         int year = scanner.nextInt();
         if (year < 2022) {
-            System.out.println("Año invalido, ingrese de nuevo su informacion"); 
+            System.out.println("Año invalido, ingrese de nuevo su informacion");
             return;
         }
-        System.out.println("Ingrese el mes de su cita (1 a 12)"); 
+        System.out.println("Ingrese el mes de su cita (1 a 12)");
         int month = scanner.nextInt();
         if (month < 1 || month > 12) {
-            System.out.println("Mes invalido, ingrese de nuevo su informacion"); // ingresa y verifica que el mes sea valido
+            System.out.println("Mes invalido, ingrese de nuevo su informacion");
             return;
         }
 
-        System.out.println("Ingrese el dia de su cita (1 a 31)"); // ingresa y  verifica que el dia sea valido
+        month--;
+
+        System.out.println("Ingrese el dia de su cita (1 a 31)");
         int day = scanner.nextInt();
 
         if (day < 1 || day > 31) {
@@ -58,24 +60,19 @@ public class Dates {
         System.out.println("Ingrese el nombre de la especialidad (Medico Internista --> 1 / Pediatria --> 2)"); // ingresa y verifica la especialidad
         int opt = scanner.nextInt();
 
-        if (opt < 1 || opt > 2) {
-            System.out.println("Opcion invalida");
-            return;
-        }
-
         String espec;
 
         if (opt == 1) {
-            espec = "Medico Internista";
+            espec = "Medicina Interna";
         } else {
             espec = "Pediatria";
-        } // asigna la especialidad al valor 
+        }
 
         try {
-            User.agendarCita(new Date(year, month, day, hour, 0), espec);
+            User.agendarCita(new Date(year-1900, month, day, hour, 0), espec);
         } catch (Exception e) {
-            System.out.println(e.getMessage()); 
-        } // muestra la interfaz para agendar la cita del usuario
+            System.out.println(e.getMessage());
+        }
     }
 
 }
