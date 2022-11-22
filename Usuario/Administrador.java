@@ -33,7 +33,7 @@ public class Administrador extends Usuario {
     }
 
     public static void agregarMedico(Medico nuevoMedico) throws Exception {
-        FileWriter file = new FileWriter("./src/Usuario/medicos.txt", true);
+        FileWriter file = new FileWriter("./Usuario/medicos.txt", true);
         BufferedWriter buffer = new BufferedWriter(file);
         ArrayList<Date> citas = nuevoMedico.getDates();
         ArrayList<Especialidad> especialidades = nuevoMedico.getEspecialidades();
@@ -48,7 +48,7 @@ public class Administrador extends Usuario {
         buffer.newLine();
         buffer.write("+");
         buffer.newLine();
-        buffer.write(citas.size());
+        buffer.write(String.valueOf(citas.size()));
         buffer.newLine();
         for (Date x: citas) {
             buffer.write(x.toString());
@@ -58,7 +58,7 @@ public class Administrador extends Usuario {
         buffer.newLine();
         buffer.write("#");
         buffer.newLine();
-        buffer.write(especialidades.size());
+        buffer.write(String.valueOf(especialidades.size()));
         buffer.newLine();
         for (Especialidad x: especialidades) {
             buffer.write(x.getName());
@@ -79,7 +79,7 @@ public class Administrador extends Usuario {
             throw new Exception("El medico que ha querido eliminar, no existe");
         }
 
-        File oldFile = new File("./src/Usuario/medicos.txt");
+        File oldFile = new File("./Usuario/medicos.txt");
 
         if (!oldFile.delete()) {
             throw new Exception("No se pudo borrar el archivo anterior");
@@ -97,7 +97,7 @@ public class Administrador extends Usuario {
         BufferedReader buffer = null;
 
         try {
-            file = new FileReader("./src/Usuario/medicos.txt");
+            file = new FileReader("./Usuario/medicos.txt");
             buffer = new BufferedReader(file);
 
             String line;
@@ -158,9 +158,9 @@ public class Administrador extends Usuario {
         line = buffer.readLine();
 
         if (line.equals("Pediatria")) {
-            res = new MedicoPediatra(data.get(0), data.get(1), Float.parseFloat(data.get(2)));
+            res = new MedicoPediatra(data.get(0), data.get(1), Float.parseFloat(data.get(2)), new ArrayList<Especialidad>());
         } else if (line.equals("Medicina Interna")) {
-            res = new MedicoInternista(data.get(0), data.get(1), Float.parseFloat(data.get(2)));
+            res = new MedicoInternista(data.get(0), data.get(1), Float.parseFloat(data.get(2)), new ArrayList<Especialidad>());
         }
 
         if (res == null) {
@@ -177,8 +177,10 @@ public class Administrador extends Usuario {
             res.addEspecialidad(it);
         }
 
-        for (int i = 2; i <= datesSize+2; i++) {
-            res.addDate(DateFormat.getDateInstance().parse(data.get(i)));
+        if (datesSize != 0) {
+            for (int i = 3; i <= datesSize+3; i++) {
+                res.addDate(DateFormat.getDateInstance().parse(data.get(i)));
+            }
         }
 
         return res;

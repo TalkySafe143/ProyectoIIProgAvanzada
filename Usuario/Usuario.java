@@ -59,7 +59,7 @@ public class Usuario {
             BufferedWriter buffer = null;
 
             try {
-                file = new FileWriter("./src/Usuario/users.txt", true);
+                file = new FileWriter("./Usuario/users.txt", true);
                 buffer = new BufferedWriter(file);
 
                 buffer.write(this.email + ";" + this.name + ";" + this.ID + ";" + this.password + ";" + this.admin);
@@ -160,8 +160,8 @@ public class Usuario {
         BufferedWriter bufferNew= null;
 
         try {
-            oldFile = new File("./src/Usuario/users.txt");
-            newFile = new File("./src/Usuario/tempUsers.txt");
+            oldFile = new File("./Usuario/users.txt");
+            newFile = new File("./Usuario/tempUsers.txt");
             bufferNew = new BufferedWriter(new FileWriter(newFile, true));
             bufferOld = new BufferedReader(new FileReader(oldFile));
 
@@ -184,7 +184,7 @@ public class Usuario {
                 throw new Exception("No se eliminar el archivo antiguo");
             }
 
-            if(!newFile.renameTo(new File("./src/Usuario/users.txt"))) {
+            if(!newFile.renameTo(new File("./Usuario/users.txt"))) {
                 throw new Exception("No se pudo renombrar el archivo nuevo");
             }
 
@@ -196,7 +196,7 @@ public class Usuario {
 
     public static boolean checkIfUserExist(String email) throws Exception {
 
-        FileReader readFile = new FileReader("./src/Usuario/users.txt");
+        FileReader readFile = new FileReader("./Usuario/users.txt");
         BufferedReader readBuffer = new BufferedReader(readFile);
 
         String line;

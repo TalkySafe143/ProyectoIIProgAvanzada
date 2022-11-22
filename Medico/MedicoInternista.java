@@ -5,11 +5,9 @@ import java.util.Date;
 
 public class MedicoInternista extends Medico {
 
-    public MedicoInternista(String name, String ID, float pricePHour) throws Exception {
+    public MedicoInternista(String name, String ID, float pricePHour, ArrayList<Especialidad> especialidades) throws Exception {
 
-        super(name, ID, pricePHour, "Mon-Fri/6-20", new ArrayList<>());
-
-        this.addEspecialidad(new Especialidad("Medicina Interna", "Universidad de los Andes"));
+        super(name, ID, pricePHour, "Mon-Fri/6-20", especialidades);
     }
 
     @Override

@@ -45,7 +45,7 @@ public class Main {
                     int op = -1;
 
                     while (op == -1) {
-                        System.out.println("1. Agregar un medico\n2. Eliminar un medico\n3. Cerrar sesion");
+                        System.out.println("1. Agregar un medico\n2. Mostrar todos los medicos\n3. Cerrar sesion");
                         op = scanner.nextInt();
 
                         if (op > 3 || op < 1) {
@@ -58,7 +58,7 @@ public class Main {
                             Clinica.crearMedico();
                             op = -1;
                         } else if (op == 2) {
-                            Clinica.eliminarMedicos();
+                            Clinica.mostrarMedicos();
                             op = -1;
                         } else {
                             option = -1;

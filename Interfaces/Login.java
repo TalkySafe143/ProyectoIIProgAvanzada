@@ -88,7 +88,7 @@ public class Login {
         boolean exist = false;
 
         try {
-            file = new FileReader("./src/Usuario/users.txt");
+            file = new FileReader("./Usuario/users.txt");
             buffer = new BufferedReader(file);
 
             String line;
